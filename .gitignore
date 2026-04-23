@@ -1,4 +1,4 @@
 uploads/*
-*.log
-.env
-.DS_Store
+!uploads/.segnaposto
+!uploads/covers/.segnaposto
+!uploads/thumbnails/.segnaposto
