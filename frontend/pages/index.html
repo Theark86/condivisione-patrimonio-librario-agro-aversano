@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrimonio Librario Agro Aversano</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Patrimonio Librario Agro Aversano</h1>
+        <p>Piattaforma per condividere collezioni librarie private</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Registrazione</h2>
+            <form action="../../backend/auth/register.php" method="POST">
+                <input type="text" name="nome" placeholder="Nome" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="comune" placeholder="Comune" required>
+                <button type="submit">Registrati</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Login</h2>
+            <form action="../../backend/auth/login.php" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Accedi</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h2>Inserisci un libro</h2>
+            <form action="../../backend/books/add_book.php" method="POST">
+                <input type="text" name="titolo" placeholder="Titolo" required>
+                <input type="text" name="autore" placeholder="Autore" required>
+                <input type="number" name="anno" placeholder="Anno" required>
+                <input type="text" name="categoria" placeholder="Categoria" required>
+                <textarea name="descrizione" placeholder="Descrizione"></textarea>
+                <button type="submit">Aggiungi libro</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
