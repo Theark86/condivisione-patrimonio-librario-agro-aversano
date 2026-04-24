@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio libro</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="book-detail"></div>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
+
+fetch(`../../backend/routes/api.php?action=book&id=${id}`)
+    .then(res => res.json())
+    .then(book => {
+
+        const div = document.getElementById("book-detail");
+
+        div.innerHTML = `
+            <h2>${book.titolo}</h2>
+            <p><strong>Autore:</strong> ${book.autore}</p>
+            <p><strong>Anno:</strong> ${book.anno}</p>
+            <p><strong>Categoria:</strong> ${book.categoria}</p>
+            <p><strong>Proprietario:</strong> ${book.proprietario}</p>
+            <p>${book.descrizione || ""}</p>
+        `;
+    });
+</script>
+
+</body>
+</html>
