@@ -31,7 +31,7 @@ L'applicazione segue un'architettura client-server:
 - Database: memorizzazione dati utenti e libri
 
 ## Avvio del progetto
-1. Clonare la repository
+1. Clonare il repository
 2. Importare il database (`database/create_tables.sql`)
 3. Configurare la connessione in `backend/config/db.php`
 4. Avviare il server locale (XAMPP o simili)
