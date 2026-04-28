@@ -44,6 +44,7 @@ Architettura **client-server**:
 
 ## 📂 Struttura del progetto
 
+```
 patrimonio-librario-agro-aversano/
 ├── frontend/
 ├── backend/
@@ -51,8 +52,7 @@ patrimonio-librario-agro-aversano/
 ├── uploads/
 ├── assets/
 └── docs/
-
----
+```
 
 ## 🚀 Funzionalità principali
 
