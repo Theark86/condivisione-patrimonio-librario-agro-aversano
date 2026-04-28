@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Mappa libri - Agro Aversano</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link 
+        rel="stylesheet" 
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mappa del patrimonio librario</h1>
+    <p>Visualizzazione geolocalizzata dei libri nell’Agro Aversano</p>
+</header>
+
+<main class="container">
+    <section class="card full-width">
+        <h2>Libri disponibili sulla mappa</h2>
+        <div id="map"></div>
+    </section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="../js/map.js"></script>
+
+</body>
+</html>
