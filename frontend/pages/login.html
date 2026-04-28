@@ -2,32 +2,70 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Permette la visualizzazione responsive su dispositivi mobili -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titolo della pagina -->
     <title>Login</title>
+
+    <!-- Collegamento al foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<!-- ===============================
+     HEADER PAGINA LOGIN
+     =============================== -->
+
 <header>
+    <!-- Titolo principale -->
     <h1>Login</h1>
+
+    <!-- Descrizione -->
     <p>Accedi al tuo account</p>
 
+    <!-- Navigazione verso altre pagine -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">🏠 Home</a>
         <a href="register.html" class="button-link">Registrati</a>
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="container">
+
+    <!-- Card contenente il form di login -->
     <section class="card full-width">
+
+        <!-- 
+            Form di autenticazione.
+            I dati vengono inviati al backend tramite POST.
+        -->
         <form action="../../backend/auth/login.php" method="POST">
 
+            <!-- Campo email utente -->
             <label>Email</label>
-            <input type="email" name="email" required>
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Inserisci la tua email"
+                required
+            >
 
+            <!-- Campo password -->
             <label>Password</label>
-            <input type="password" name="password" required>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Inserisci la password"
+                required
+            >
 
+            <!-- Pulsante di invio -->
             <button type="submit">Accedi</button>
 
         </form>
