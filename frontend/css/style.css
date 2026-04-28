@@ -390,3 +390,32 @@
 .btn-reject:hover {
     background: #c0392b;
 }
+
+/* ===== REGISTER ===== */
+
+.register-card {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.register-form {
+    text-align: left;
+}
+
+.geo-box {
+    margin: 15px 0;
+    padding: 12px;
+    background: #f4f6f9;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.geo-box p {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.button-link.small {
+    font-size: 13px;
+    padding: 6px 10px;
+}

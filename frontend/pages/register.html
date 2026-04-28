@@ -19,45 +19,95 @@
 </header>
 
 <main class="container">
-    <section class="card full-width">
-        <form action="../../backend/auth/register.php" method="POST">
+    <section class="card full-width register-card">
 
-            <label>Nome</label>
-            <input type="text" name="nome" required>
+        <h2>Crea il tuo account</h2>
 
-            <label>Email</label>
-            <input type="email" name="email" required>
+        <form action="../../backend/auth/register.php" method="POST" class="register-form">
 
-            <label>Password</label>
-            <input type="password" name="password" required>
-			
-			<label>Comune</label>
-			<select name="comune" required>
-				<option value="">Seleziona un comune</option>
+            <div class="form-grid">
 
-				<option value="Aversa">Aversa</option>
-				<option value="Carinaro">Carinaro</option>
-				<option value="Casaluce">Casaluce</option>
-				<option value="Cesa">Cesa</option>
-				<option value="Frignano">Frignano</option>
-				<option value="Gricignano di Aversa">Gricignano di Aversa</option>
-				<option value="Lusciano">Lusciano</option>
-				<option value="Orta di Atella">Orta di Atella</option>
-				<option value="Parete">Parete</option>
-				<option value="San Cipriano d'Aversa">San Cipriano d'Aversa</option>
-				<option value="San Marcellino">San Marcellino</option>
-				<option value="Sant'Arpino">Sant'Arpino</option>
-				<option value="Succivo">Succivo</option>
-				<option value="Teverola">Teverola</option>
-				<option value="Villa di Briano">Villa di Briano</option>
+                <div class="form-group">
+                    <label>Nome *</label>
+                    <input type="text" name="nome" required>
+                </div>
 
-			</select>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Comune *</label>
+                    <select name="comune" required>
+                        <option value="">Seleziona un comune</option>
+                        <option>Aversa</option>
+                        <option>Carinaro</option>
+                        <option>Casaluce</option>
+                        <option>Cesa</option>
+                        <option>Frignano</option>
+                        <option>Gricignano di Aversa</option>
+                        <option>Lusciano</option>
+                        <option>Orta di Atella</option>
+                        <option>Parete</option>
+                        <option>San Cipriano d'Aversa</option>
+                        <option>San Marcellino</option>
+                        <option>Sant'Arpino</option>
+                        <option>Succivo</option>
+                        <option>Teverola</option>
+                        <option>Villa di Briano</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- CAMPI NASCOSTI GEO -->
+            <input type="hidden" name="latitudine" id="latitudine">
+            <input type="hidden" name="longitudine" id="longitudine">
+
+            <div class="geo-box">
+                <p id="geo-status">📍 Rilevamento posizione in corso...</p>
+                <button type="button" onclick="getLocation()" class="button-link small">
+                    Rileva posizione manualmente
+                </button>
+            </div>
 
             <button type="submit">Registrati</button>
 
         </form>
     </section>
 </main>
+
+<script>
+function getLocation() {
+    const status = document.getElementById("geo-status");
+
+    if (!navigator.geolocation) {
+        status.innerHTML = "❌ Geolocalizzazione non supportata.";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+            document.getElementById("latitudine").value = position.coords.latitude;
+            document.getElementById("longitudine").value = position.coords.longitude;
+
+            status.innerHTML = "✅ Posizione rilevata correttamente";
+        },
+        function(error) {
+            status.innerHTML = "⚠️ Impossibile ottenere la posizione";
+        }
+    );
+}
+
+// AUTO AVVIO
+getLocation();
+</script>
 
 </body>
 </html>
