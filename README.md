@@ -192,13 +192,25 @@ Arcangelo Palmiero
 ✔ Conforme ai requisiti richiesti  
 ---
 
-## Anteprima
+## 📸 Screenshot
 
-### Home
-![Home](docs/mockup/home.png)
+### 🏠 Home
+![Home](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/home.png)
 
-### Mappa
-![Mappa](docs/mockup/mappa.png)
+### 🔐 Login
+![Login](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/homelogin.png)
 
-### Dettaglio libro
-![Dettaglio](docs/mockup/dettaglio-libro.png)
+### 📝 Registrazione
+![Registrazione](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/registrati.png)
+
+### ➕ Aggiungi libro
+![Aggiungi libro](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/aggiungilibro.png)
+
+### 🗺️ Mappa
+![Mappa](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/mappa.png)
+
+### 📊 Dashboard
+![Dashboard](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/dashboard.png)
+
+### 📩 Richieste ricevute
+![Richieste](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/richieste-ricevute.png)
