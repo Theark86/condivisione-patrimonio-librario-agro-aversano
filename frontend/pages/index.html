@@ -7,26 +7,71 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+
+    <!-- Intestazione principale della piattaforma -->
     <header>
-	<div id="auth-section"></div>
         <h1>Patrimonio Librario Agro Aversano</h1>
         <p>Piattaforma per condividere collezioni librarie private</p>
 
+        <!-- Sezione login/logout gestita dinamicamente da main.js -->
+        <div id="auth-section"></div>
+
+        <!-- Menu principale di navigazione -->
         <nav class="nav-buttons">
             <a href="add-book.html" class="button-link">Aggiungi libro</a>
-            <a href="map.html" class="button-link">Vai alla mappa</a>
+            <a href="map.html" class="button-link">Mappa</a>
             <a href="dashboard.html" class="button-link">Dashboard</a>
-			<a href="my-requests.html" class="button-link">📩 Richieste</a>
+            <a href="my-requests.html" class="button-link">Richieste ricevute</a>
         </nav>
     </header>
 
     <main class="container">
+
+        <!-- Sezione ricerca e filtri -->
+        <section class="card full-width">
+            <h2>Ricerca libri</h2>
+
+            <div class="search-filters">
+                <!-- Ricerca testuale per titolo, autore o categoria -->
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Cerca per titolo, autore o categoria..."
+                >
+
+                <!-- Filtro spaziale semplificato per comune/area -->
+                <select id="comune-filter">
+                    <option value="">Tutti i comuni</option>
+                    <option value="Aversa">Aversa</option>
+                    <option value="Carinaro">Carinaro</option>
+                    <option value="Casaluce">Casaluce</option>
+                    <option value="Cesa">Cesa</option>
+                    <option value="Frignano">Frignano</option>
+                    <option value="Gricignano di Aversa">Gricignano di Aversa</option>
+                    <option value="Lusciano">Lusciano</option>
+                    <option value="Orta di Atella">Orta di Atella</option>
+                    <option value="Parete">Parete</option>
+                    <option value="San Cipriano d'Aversa">San Cipriano d'Aversa</option>
+                    <option value="San Marcellino">San Marcellino</option>
+                    <option value="Sant'Arpino">Sant'Arpino</option>
+                    <option value="Succivo">Succivo</option>
+                    <option value="Teverola">Teverola</option>
+                    <option value="Villa di Briano">Villa di Briano</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Lista dinamica dei libri caricata tramite API -->
         <section class="card full-width">
             <h2>Libri disponibili</h2>
-            <div id="books-container"></div>
+            <div id="books-container">
+                <p>Caricamento libri...</p>
+            </div>
         </section>
+
     </main>
 
+    <!-- Script principale: sessione utente, caricamento libri, ricerca e filtri -->
     <script src="../js/main.js"></script>
 </body>
 </html>
