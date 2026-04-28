@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($user && password_verify($password, $user["password"])) {
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["user_name"] = $user["nome"];
-        echo "Login effettuato con successo.";
+        header("Location: ../../frontend/pages/index.html");
+exit;
     } else {
         echo "Credenziali non valide.";
     }
