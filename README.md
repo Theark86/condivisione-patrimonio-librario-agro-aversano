@@ -205,6 +205,9 @@ Arcangelo Palmiero
 ### 🏠 Home
 ![Home](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/home.png)
 
+### 🏠 🚫 Home senza login
+![Home senza login](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/homenologin.png)
+
 ### 🔐 Login
 ![Login](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/login.png)
 
