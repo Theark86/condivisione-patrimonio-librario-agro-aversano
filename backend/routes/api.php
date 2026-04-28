@@ -64,6 +64,33 @@ case "request_loan":
     echo json_encode(["success" => true]);
     break;
 	
+case "received_requests":
+    session_start();
+
+    // Per il prototipo, se non c'è login attivo usiamo l'utente 1.
+    $ownerId = $_SESSION["user_id"] ?? 1;
+
+    $stmt = $conn->prepare("
+        SELECT 
+            loan_requests.id,
+            loan_requests.messaggio,
+            loan_requests.stato,
+            loan_requests.created_at,
+            books.titolo AS titolo_libro,
+            users.nome AS richiedente,
+            users.email AS email_richiedente
+        FROM loan_requests
+        JOIN books ON loan_requests.book_id = books.id
+        JOIN users ON loan_requests.requester_id = users.id
+        WHERE loan_requests.owner_id = ?
+        ORDER BY loan_requests.created_at DESC
+    ");
+
+    $stmt->execute([$ownerId]);
+
+    echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+    break;	
+	
     default:
         echo json_encode(["error" => "Azione non valida"]);
 }

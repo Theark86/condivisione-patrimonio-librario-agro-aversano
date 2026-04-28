@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Richieste ricevute</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Richieste ricevute</h1>
+    <p>Prestiti richiesti dai lettori</p>
+
+    <nav class="nav-buttons">
+        <a href="index.html" class="button-link">Home</a>
+        <a href="map.html" class="button-link">Mappa</a>
+        <a href="dashboard.html" class="button-link">Dashboard</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="card full-width">
+        <h2>Elenco richieste</h2>
+        <div id="requests-container"></div>
+    </section>
+</main>
+
+<script>
+fetch("../../backend/routes/api.php?action=received_requests")
+    .then(res => res.json())
+    .then(data => {
+        const container = document.getElementById("requests-container");
+
+        if (!data.length) {
+            container.innerHTML = "<p>Nessuna richiesta ricevuta.</p>";
+            return;
+        }
+
+        data.forEach(req => {
+            const div = document.createElement("div");
+            div.className = "request-card";
+
+            div.innerHTML = `
+                <h3>${req.titolo_libro}</h3>
+
+                <p><strong>Richiedente:</strong> ${req.richiedente}</p>
+                <p><strong>Email:</strong> ${req.email_richiedente}</p>
+                <p><strong>Messaggio:</strong> ${req.messaggio}</p>
+                <p><strong>Stato:</strong> ${req.stato}</p>
+                <p><small>${req.created_at}</small></p>
+            `;
+
+            container.appendChild(div);
+        });
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById("requests-container").innerHTML =
+            "<p>Errore nel caricamento delle richieste.</p>";
+    });
+</script>
+
+</body>
+</html>
