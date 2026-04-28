@@ -12,13 +12,29 @@ switch ($action) {
         echo json_encode(BookController::getAllBooks($conn));
         break;
 
-    case "book":
-        if (isset($_GET["id"])) {
-            echo json_encode(BookController::getBookById($conn, $_GET["id"]));
-        } else {
-            echo json_encode(["error" => "ID mancante"]);
+case "book":
+    session_start();
+
+    if (isset($_GET["id"])) {
+        $bookId = $_GET["id"];
+
+        $book = BookController::getBookById($conn, $bookId);
+
+        if ($book) {
+            $userId = $_SESSION["user_id"] ?? null;
+
+            $viewStmt = $conn->prepare("
+                INSERT INTO book_views (book_id, user_id)
+                VALUES (?, ?)
+            ");
+            $viewStmt->execute([$bookId, $userId]);
         }
-        break;
+
+        echo json_encode($book);
+    } else {
+        echo json_encode(["error" => "ID mancante"]);
+    }
+    break;
 
 case "stats":
     require_once("../controllers/statsController.php");
