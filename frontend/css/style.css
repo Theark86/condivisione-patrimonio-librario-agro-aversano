@@ -175,3 +175,67 @@
         height: 500px;
     }
 }
+
+/* ===== DASHBOARD PAGE ===== */
+
+.dashboard-header {
+    padding-bottom: 25px;
+}
+
+.dashboard-layout {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 26px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.stat-card strong {
+    font-size: 42px;
+    color: #2c3e50;
+}
+
+.chart-card {
+    grid-column: 1 / -1;
+    padding: 28px;
+    text-align: left;
+}
+
+.chart-card h2 {
+    margin-top: 0;
+}
+
+.chart-description {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+#chart {
+    max-height: 420px;
+}
+
+@media (max-width: 850px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card strong {
+        font-size: 34px;
+    }
+}
