@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Registrazione</h1>
+    <p>Crea un nuovo account</p>
+
+    <nav class="nav-buttons">
+        <a href="index.html" class="button-link">🏠 Home</a>
+        <a href="login.html" class="button-link">Login</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="card full-width">
+        <form action="../../backend/auth/register.php" method="POST">
+
+            <label>Nome</label>
+            <input type="text" name="nome" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <label>Comune</label>
+            <input type="text" name="comune" required>
+
+            <button type="submit">Registrati</button>
+
+        </form>
+    </section>
+</main>
+
+</body>
+</html>
