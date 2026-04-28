@@ -2,15 +2,26 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Titolo della pagina -->
     <title>Richieste ricevute</title>
+
+    <!-- Foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<!-- ===============================
+     HEADER PAGINA RICHIESTE
+     =============================== -->
+
 <header>
     <h1>Richieste ricevute</h1>
+
+    <!-- Descrizione della pagina -->
     <p>Prestiti richiesti dai lettori</p>
 
+    <!-- Navigazione principale -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">Home</a>
         <a href="map.html" class="button-link">Mappa</a>
@@ -18,74 +29,121 @@
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="container">
+
+    <!-- Card contenente le richieste -->
     <section class="card full-width">
         <h2>Elenco richieste</h2>
+
+        <!-- 
+            Contenitore dinamico:
+            verrà popolato tramite JavaScript con le richieste ricevute
+        -->
         <div id="requests-container"></div>
     </section>
+
 </main>
 
 <script>
+// ===============================
+// Aggiornamento stato richiesta
+// ===============================
+
+// Funzione per accettare o rifiutare una richiesta
 function updateRequest(id, status) {
+
+    // Invio richiesta POST al backend
     fetch("../../backend/routes/api.php?action=update_request", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
+
+        // Parametri inviati (id richiesta + nuovo stato)
         body: `request_id=${encodeURIComponent(id)}&status=${encodeURIComponent(status)}`
     })
     .then(res => res.json())
     .then(data => {
+
+        // Se aggiornamento riuscito
         if (data.success) {
             alert("Stato aggiornato!");
+
+            // Ricarica la pagina per aggiornare i dati
             location.reload();
         } else {
             alert("Errore: " + data.error);
         }
     })
     .catch(err => {
+
+        // Errore di connessione
         console.error(err);
         alert("Errore di connessione.");
     });
 }
 
+
+// ===============================
+// Caricamento richieste ricevute
+// ===============================
+
+// Richiesta al backend per ottenere le richieste
 fetch("../../backend/routes/api.php?action=received_requests")
     .then(res => res.json())
     .then(data => {
+
         const container = document.getElementById("requests-container");
 
+        // Caso nessuna richiesta
         if (!data.length) {
             container.innerHTML = "<p>Nessuna richiesta ricevuta.</p>";
             return;
         }
 
+        // Ciclo su tutte le richieste ricevute
         data.forEach(req => {
+
             const div = document.createElement("div");
             div.className = "request-card";
 
             let buttons = "";
 
+            // Se richiesta in stato "simulata" → mostra pulsanti
             if (req.stato === "simulata") {
                 buttons = `
                     <div class="request-actions">
+
+                        <!-- Pulsante accetta -->
                         <button onclick="updateRequest(${req.id}, 'accettata')" class="btn-accept">
                             Accetta
                         </button>
 
+                        <!-- Pulsante rifiuta -->
                         <button onclick="updateRequest(${req.id}, 'rifiutata')" class="btn-reject">
                             Rifiuta
                         </button>
+
                     </div>
                 `;
             }
 
+            // Creazione HTML dinamico della richiesta
             div.innerHTML = `
                 <h3>${req.titolo_libro}</h3>
+
                 <p><strong>Richiedente:</strong> ${req.richiedente}</p>
                 <p><strong>Email:</strong> ${req.email_richiedente}</p>
                 <p><strong>Messaggio:</strong> ${req.messaggio}</p>
                 <p><strong>Stato:</strong> ${req.stato}</p>
+
+                <!-- Data richiesta -->
                 <p><small>${req.created_at}</small></p>
+
                 ${buttons}
             `;
 
@@ -93,7 +151,10 @@ fetch("../../backend/routes/api.php?action=received_requests")
         });
     })
     .catch(err => {
+
+        // Errore caricamento dati
         console.error(err);
+
         document.getElementById("requests-container").innerHTML =
             "<p>Errore nel caricamento delle richieste.</p>";
     });
