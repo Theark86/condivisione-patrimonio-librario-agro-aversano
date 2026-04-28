@@ -20,6 +20,11 @@ switch ($action) {
         }
         break;
 
+case "stats":
+    require_once("../controllers/statsController.php");
+    echo json_encode(StatsController::getStats($conn));
+    break;
+	
     default:
         echo json_encode(["error" => "Azione non valida"]);
 }
