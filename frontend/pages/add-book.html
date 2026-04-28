@@ -2,15 +2,27 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Titolo della pagina visualizzato nel browser -->
     <title>Aggiungi libro</title>
+
+    <!-- Collegamento al foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<!-- ===============================
+     HEADER DELLA PAGINA
+     =============================== -->
+
 <header>
+    <!-- Titolo principale -->
     <h1>Aggiungi un libro</h1>
+
+    <!-- Sottotitolo descrittivo -->
     <p>Inserisci un volume della tua collezione privata</p>
 
+    <!-- Menu di navigazione tra le principali pagine -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">Home</a>
         <a href="map.html" class="button-link">Mappa</a>
@@ -18,37 +30,78 @@
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="container">
+
+    <!-- Card contenente il form di inserimento libro -->
     <section class="card full-width add-book-card">
+
         <h2>Nuovo libro</h2>
 
+        <!-- 
+            Form per l'inserimento di un nuovo libro.
+            I dati vengono inviati al backend tramite POST.
+            enctype="multipart/form-data" serve per il caricamento file (immagine copertina).
+        -->
         <form 
             action="../../backend/books/add_book.php" 
             method="POST" 
             enctype="multipart/form-data"
             class="book-form"
         >
+
+            <!-- Griglia per organizzare i campi in due colonne -->
             <div class="form-grid">
+
+                <!-- Titolo libro (obbligatorio) -->
                 <div class="form-group">
                     <label>Titolo *</label>
-                    <input type="text" name="titolo" placeholder="Es. Storia di Aversa" required>
+                    <input 
+                        type="text" 
+                        name="titolo" 
+                        placeholder="Es. Storia di Aversa" 
+                        required
+                    >
                 </div>
 
+                <!-- Autore libro (obbligatorio) -->
                 <div class="form-group">
                     <label>Autore *</label>
-                    <input type="text" name="autore" placeholder="Es. Mario Rossi" required>
+                    <input 
+                        type="text" 
+                        name="autore" 
+                        placeholder="Es. Mario Rossi" 
+                        required
+                    >
                 </div>
 
+                <!-- Codice ISBN (facoltativo) -->
                 <div class="form-group">
                     <label>ISBN</label>
-                    <input type="text" name="isbn" placeholder="Es. 9788800000000" maxlength="20">
+                    <input 
+                        type="text" 
+                        name="isbn" 
+                        placeholder="Es. 9788800000000" 
+                        maxlength="20"
+                    >
                 </div>
 
+                <!-- Anno di pubblicazione (facoltativo con limiti) -->
                 <div class="form-group">
                     <label>Anno</label>
-                    <input type="number" name="anno" placeholder="Es. 2020" min="1000" max="2100">
+                    <input 
+                        type="number" 
+                        name="anno" 
+                        placeholder="Es. 2020" 
+                        min="1000" 
+                        max="2100"
+                    >
                 </div>
 
+                <!-- Categoria del libro selezionabile -->
                 <div class="form-group">
                     <label>Categoria</label>
                     <select name="categoria">
@@ -63,17 +116,24 @@
                     </select>
                 </div>
 
+                <!-- Upload immagine copertina -->
                 <div class="form-group">
                     <label>Copertina</label>
+                    <!-- accept="image/*" limita ai file immagine -->
                     <input type="file" name="cover" accept="image/*">
                 </div>
             </div>
 
+            <!-- Campo descrizione libro -->
             <div class="form-group">
                 <label>Descrizione</label>
-                <textarea name="descrizione" placeholder="Aggiungi una breve descrizione del volume"></textarea>
+                <textarea 
+                    name="descrizione" 
+                    placeholder="Aggiungi una breve descrizione del volume"
+                ></textarea>
             </div>
 
+            <!-- Pulsante di invio form -->
             <button type="submit">Salva libro</button>
         </form>
     </section>
