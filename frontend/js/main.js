@@ -1,10 +1,37 @@
 // ===============================
+// Gestione Login / Logout
+// ===============================
+
+fetch("../../backend/routes/session.php")
+    .then(response => response.json())
+    .then(data => {
+        const authSection = document.getElementById("auth-section");
+
+        if (!authSection) return;
+
+        if (data.logged) {
+            authSection.innerHTML = `
+                <p>Benvenuto, <strong>${data.user}</strong></p>
+                <a href="../../backend/auth/logout.php" class="button-link">Logout</a>
+            `;
+        } else {
+            authSection.innerHTML = `
+                <a href="login.html" class="button-link">Login</a>
+                <a href="register.html" class="button-link">Registrati</a>
+            `;
+        }
+    })
+    .catch(error => {
+        console.error("Errore sessione:", error);
+    });
+
+
+// ===============================
 // Caricamento libri + ricerca
 // ===============================
 
 let allBooks = [];
 
-// Recupero libri da API
 fetch("../../backend/routes/api.php?action=books")
     .then(response => response.json())
     .then(data => {
@@ -21,6 +48,7 @@ fetch("../../backend/routes/api.php?action=books")
 // ===============================
 // Rendering libri
 // ===============================
+
 function renderBooks(books) {
     const container = document.getElementById("books-container");
     container.innerHTML = "";
@@ -39,13 +67,14 @@ function renderBooks(books) {
             : "../../assets/images/default-book.png";
 
         div.innerHTML = `
-            <img src="${image}" class="book-cover">
+            <img src="${image}" alt="Copertina di ${book.titolo}" class="book-cover">
 
             <h3>${book.titolo}</h3>
 
             <p><strong>Autore:</strong> ${book.autore}</p>
             <p><strong>Categoria:</strong> ${book.categoria || "Non specificata"}</p>
-            <p><strong>Comune:</strong> ${book.comune}</p>
+            <p><strong>Comune:</strong> ${book.comune || "Non indicato"}</p>
+            <p><strong>Proprietario:</strong> ${book.proprietario || "Non indicato"}</p>
 
             <a href="book-detail.html?id=${book.id}" class="button-link">
                 📖 Vedi dettaglio
@@ -58,21 +87,25 @@ function renderBooks(books) {
 
 
 // ===============================
-// Ricerca e filtro
+// Ricerca testuale + filtro comune
 // ===============================
 
-// input ricerca
-document.getElementById("search-input").addEventListener("input", filterBooks);
+const searchInput = document.getElementById("search-input");
+const comuneFilter = document.getElementById("comune-filter");
 
-// filtro comune
-document.getElementById("comune-filter").addEventListener("change", filterBooks);
+if (searchInput) {
+    searchInput.addEventListener("input", filterBooks);
+}
+
+if (comuneFilter) {
+    comuneFilter.addEventListener("change", filterBooks);
+}
 
 function filterBooks() {
-    const searchValue = document.getElementById("search-input").value.toLowerCase();
-    const comuneValue = document.getElementById("comune-filter").value;
+    const searchValue = searchInput.value.toLowerCase();
+    const comuneValue = comuneFilter.value;
 
     const filtered = allBooks.filter(book => {
-
         const matchesSearch =
             book.titolo.toLowerCase().includes(searchValue) ||
             book.autore.toLowerCase().includes(searchValue) ||
