@@ -131,7 +131,7 @@ Restituisce:
 
 ## 🧪 Avvio del progetto
 
-1. Clonare la repository:
+1. Clonare il repository:
 
 git clone https://github.com/Theark86/patrimonio-librario-agro-aversano-
 
@@ -147,10 +147,16 @@ C:\xampp\htdocs\patrimonio-librario-agro-aversano
 
 patrimonio_librario  
 
-5. Importare:
+5. Importare il database:
 
-database/create_tables.sql  
-database/sample_data.sql  
+Il database può essere creato importando:
+
+- `database/create_tables.sql` (struttura)
+- `database/sample_data.sql` (dati di esempio)
+
+In alternativa è disponibile anche un dump completo:
+
+- `database/patrimonio_librario_dump.sql`
 
 6. Aprire nel browser:
 
