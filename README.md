@@ -57,7 +57,7 @@ patrimonio-librario-agro-aversano/
 ## 🚀 Funzionalità principali
 
 ### 👤 Utenti
-- Registrazione con selezione comune
+- Registrazione con selezione comune di residenza e geolocalizzazione automatica / manuale
 - Login / Logout
 - Gestione sessione
 
