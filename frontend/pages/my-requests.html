@@ -26,28 +26,13 @@
 </main>
 
 <script>
-fetch("../../backend/routes/api.php?action=received_requests")
-    .then(res => res.json())
-    .then(data => {
-        const container = document.getElementById("requests-container");
-
-        if (!data.length) {
-            container.innerHTML = "<p>Nessuna richiesta ricevuta.</p>";
-            return;
-        }
-
-        data.forEach(req => {
-            const div = document.createElement("div");
-            div.className = "request-card";
-
-           <script>
 function updateRequest(id, status) {
     fetch("../../backend/routes/api.php?action=update_request", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: `request_id=${id}&status=${status}`
+        body: `request_id=${encodeURIComponent(id)}&status=${encodeURIComponent(status)}`
     })
     .then(res => res.json())
     .then(data => {
@@ -57,6 +42,10 @@ function updateRequest(id, status) {
         } else {
             alert("Errore: " + data.error);
         }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Errore di connessione.");
     });
 }
 
@@ -92,20 +81,17 @@ fetch("../../backend/routes/api.php?action=received_requests")
 
             div.innerHTML = `
                 <h3>${req.titolo_libro}</h3>
-
                 <p><strong>Richiedente:</strong> ${req.richiedente}</p>
                 <p><strong>Email:</strong> ${req.email_richiedente}</p>
                 <p><strong>Messaggio:</strong> ${req.messaggio}</p>
                 <p><strong>Stato:</strong> ${req.stato}</p>
                 <p><small>${req.created_at}</small></p>
-
                 ${buttons}
             `;
 
             container.appendChild(div);
         });
-    });
-
+    })
     .catch(err => {
         console.error(err);
         document.getElementById("requests-container").innerHTML =
