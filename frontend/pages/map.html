@@ -3,33 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Mappa libri - Agro Aversano</title>
-
     <link rel="stylesheet" href="../css/style.css">
-
-    <link 
-        rel="stylesheet" 
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    >
-
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-            border-radius: 12px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
-<header>
+<header class="map-header">
     <h1>Mappa del patrimonio librario</h1>
-    <p>Visualizzazione geolocalizzata dei libri nell’Agro Aversano</p>
+    <p>Esplora i libri condivisi dagli utenti nell’Agro Aversano</p>
+
+    <nav class="nav-buttons">
+        <a href="index.html" class="button-link">Home</a>
+        <a href="add-book.html" class="button-link">Aggiungi libro</a>
+        <a href="dashboard.html" class="button-link">Dashboard</a>
+    </nav>
 </header>
 
-<main class="container">
-    <section class="card full-width">
-        <h2>Libri disponibili sulla mappa</h2>
+<main class="map-layout">
+    <section class="map-info card">
+        <h2>Ricerca territoriale</h2>
+        <p>
+            Ogni marker rappresenta un libro disponibile presso un utente del territorio.
+            Clicca sul punto per visualizzare titolo, autore e proprietario.
+        </p>
+
+        <div class="legend">
+            <span class="legend-dot"></span>
+            <span>Libro disponibile</span>
+        </div>
+    </section>
+
+    <section class="map-card card">
         <div id="map"></div>
     </section>
 </main>

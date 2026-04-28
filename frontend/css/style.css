@@ -98,3 +98,80 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== MAP PAGE ===== */
+
+.map-header {
+    padding-bottom: 25px;
+}
+
+.map-layout {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 24px;
+}
+
+.map-info {
+    height: fit-content;
+    text-align: left;
+}
+
+.map-info h2 {
+    margin-top: 0;
+}
+
+.map-info p {
+    line-height: 1.6;
+}
+
+.map-card {
+    padding: 12px;
+}
+
+#map {
+    height: 650px;
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.legend {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f4f6f9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    background: #2c3e50;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.leaflet-popup-content {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.leaflet-popup-content a {
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+@media (max-width: 850px) {
+    .map-layout {
+        grid-template-columns: 1fr;
+    }
+
+    #map {
+        height: 500px;
+    }
+}
