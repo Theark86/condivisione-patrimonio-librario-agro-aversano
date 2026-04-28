@@ -12,8 +12,9 @@ $userId = $_SESSION["user_id"] ?? 1;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titolo = trim($_POST["titolo"]);
-    $autore = trim($_POST["autore"]);
-    $anno = trim($_POST["anno"]);
+	$autore = trim($_POST["autore"]);
+	$isbn = trim($_POST["isbn"]);
+	$anno = trim($_POST["anno"]);
     $categoria = trim($_POST["categoria"]);
     $descrizione = trim($_POST["descrizione"]);
 
@@ -23,22 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     [$coverImage, $thumbnailImage] = uploadCoverImage($_FILES["cover"] ?? null);
 
-    $stmt = $conn->prepare("
-        INSERT INTO books 
-        (user_id, titolo, autore, anno, categoria, descrizione, cover_image, thumbnail_image)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    ");
+	 $stmt = $conn->prepare("
+		INSERT INTO books 
+		(user_id, titolo, autore, isbn, anno, categoria, descrizione, cover_image, thumbnail_image)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+	");
 
-    $stmt->execute([
-        $userId,
-        $titolo,
-        $autore,
-        $anno,
-        $categoria,
-        $descrizione,
-        $coverImage,
-        $thumbnailImage
-    ]);
+	$stmt->execute([
+		$userId,
+		$titolo,
+		$autore,
+		$isbn,
+		$anno,
+		$categoria,
+		$descrizione,
+		$coverImage,
+		$thumbnailImage
+	]);
 
     header("Location: ../../frontend/pages/index.html");
     exit;
