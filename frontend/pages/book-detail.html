@@ -7,12 +7,21 @@
 </head>
 <body>
 
-<header>
+<header class="detail-header">
     <h1>Dettaglio libro</h1>
+    <p>Informazioni complete sul volume selezionato</p>
+
+    <nav class="nav-buttons">
+        <a href="index.html" class="button-link">Home</a>
+        <a href="map.html" class="button-link">Mappa</a>
+        <a href="dashboard.html" class="button-link">Dashboard</a>
+    </nav>
 </header>
 
-<main class="container">
-    <section class="card full-width" id="book-detail"></section>
+<main class="detail-layout">
+    <section id="book-detail" class="card detail-card">
+        <p>Caricamento dettagli...</p>
+    </section>
 </main>
 
 <script>
@@ -24,22 +33,85 @@ fetch(`../../backend/routes/api.php?action=book&id=${id}`)
     .then(book => {
         const div = document.getElementById("book-detail");
 
+        if (!book || book.error) {
+            div.innerHTML = "<p>Libro non trovato.</p>";
+            return;
+        }
+
         const image = book.cover_image
             ? `../../${book.cover_image}`
             : "../../assets/images/default-book.png";
 
         div.innerHTML = `
-            <img src="${image}" alt="Copertina di ${book.titolo}" class="book-cover-detail">
-            <h2>${book.titolo}</h2>
-            <p><strong>Autore:</strong> ${book.autore}</p>
-            <p><strong>Anno:</strong> ${book.anno || "Non indicato"}</p>
-            <p><strong>Categoria:</strong> ${book.categoria || "Non specificata"}</p>
-            <p><strong>Proprietario:</strong> ${book.proprietario}</p>
-            <p><strong>Comune:</strong> ${book.comune}</p>
-            <p>${book.descrizione || ""}</p>
-            <button>Richiedi prestito</button>
+            <div class="detail-grid">
+                <div class="detail-cover-box">
+                    <img src="${image}" alt="Copertina di ${book.titolo}" class="book-cover-detail">
+                </div>
+
+                <div class="detail-info">
+                    <span class="detail-category">${book.categoria || "Categoria non specificata"}</span>
+
+                    <h2>${book.titolo}</h2>
+
+                    <div class="detail-meta">
+                        <p><strong>Autore:</strong> ${book.autore}</p>
+                        <p><strong>ISBN:</strong> ${book.isbn || "Non indicato"}</p>
+                        <p><strong>Anno:</strong> ${book.anno || "Non indicato"}</p>
+                        <p><strong>Proprietario:</strong> ${book.proprietario || "Non indicato"}</p>
+                        <p><strong>Comune:</strong> ${book.comune || "Non indicato"}</p>
+                    </div>
+
+                    <div class="detail-description">
+                        <h3>Descrizione</h3>
+                        <p>${book.descrizione || "Nessuna descrizione disponibile."}</p>
+                    </div>
+
+                    <button class="request-button" onclick="requestLoan(${book.id})">
+                        Richiedi prestito
+                    </button>
+
+                    <p id="loan-message" class="loan-message"></p>
+                </div>
+            </div>
         `;
+    })
+    .catch(error => {
+        console.error(error);
+        document.getElementById("book-detail").innerHTML =
+            "<p>Errore nel caricamento del dettaglio libro.</p>";
     });
+
+function requestLoan(bookId) {
+    const message = document.getElementById("loan-message");
+
+    if (!message) return;
+
+    message.innerHTML = "Invio richiesta in corso...";
+    message.className = "loan-message";
+
+    fetch("../../backend/routes/api.php?action=request_loan", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `book_id=${encodeURIComponent(bookId)}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            message.innerHTML = "Richiesta di prestito inviata correttamente.";
+            message.className = "loan-message success";
+        } else {
+            message.innerHTML = data.error || "Errore durante l'invio della richiesta.";
+            message.className = "loan-message error";
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        message.innerHTML = "Errore di connessione.";
+        message.className = "loan-message error";
+    });
+}
 </script>
 
 </body>

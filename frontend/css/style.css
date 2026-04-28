@@ -239,3 +239,110 @@
         font-size: 34px;
     }
 }
+
+/* ===== BOOK DETAIL PAGE ===== */
+
+.detail-header {
+    padding-bottom: 25px;
+}
+
+.detail-layout {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.detail-card {
+    padding: 30px;
+    text-align: left;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 35px;
+    align-items: flex-start;
+}
+
+.detail-cover-box {
+    text-align: center;
+}
+
+.book-cover-detail {
+    width: 260px;
+    max-width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    background: #eee;
+}
+
+.detail-category {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #eef2f7;
+    color: #2c3e50;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.detail-info h2 {
+    margin-top: 0;
+    font-size: 32px;
+    color: #2c3e50;
+}
+
+.detail-meta {
+    margin: 20px 0;
+    padding: 18px;
+    background: #f7f9fb;
+    border-radius: 12px;
+}
+
+.detail-meta p {
+    margin: 8px 0;
+}
+
+.detail-description {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.request-button {
+    margin-top: 20px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #2c3e50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.request-button:hover {
+    background: #1f2d3a;
+}
+
+@media (max-width: 800px) {
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-info h2 {
+        font-size: 26px;
+    }
+}
+
+.loan-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.loan-message.success {
+    color: #1f7a3a;
+}
+
+.loan-message.error {
+    color: #b00020;
+}
