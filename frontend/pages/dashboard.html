@@ -2,16 +2,29 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Titolo della pagina visualizzato nel browser -->
     <title>Dashboard statistiche</title>
+
+    <!-- Foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Libreria Chart.js per la creazione dei grafici -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<!-- ===============================
+     HEADER DASHBOARD
+     =============================== -->
+
 <header class="dashboard-header">
     <h1>Dashboard statistiche</h1>
+
+    <!-- Descrizione della sezione -->
     <p>Monitoraggio dei dati principali della piattaforma</p>
 
+    <!-- Navigazione tra le principali pagine -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">Home</a>
         <a href="add-book.html" class="button-link">Aggiungi libro</a>
@@ -19,33 +32,61 @@
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="dashboard-layout">
 
+    <!-- ===============================
+         CARD STATISTICHE NUMERICHE
+         =============================== -->
+
+    <!-- Numero totale libri presenti nel sistema -->
     <section class="stat-card">
         <span class="stat-label">Totale libri</span>
         <strong id="books-count">0</strong>
     </section>
 
+    <!-- Numero totale utenti registrati -->
     <section class="stat-card">
         <span class="stat-label">Totale utenti</span>
         <strong id="users-count">0</strong>
     </section>
 
+    <!-- Numero totale richieste di prestito -->
     <section class="stat-card">
         <span class="stat-label">Richieste</span>
         <strong id="requests-count">0</strong>
     </section>
 
+
+    <!-- ===============================
+         GRAFICO STATISTICHE
+         =============================== -->
+
     <section class="card chart-card">
+
+        <!-- Titolo del grafico -->
         <h2>Libri più visualizzati</h2>
+
+        <!-- Descrizione del contenuto -->
         <p class="chart-description">
             Il grafico mostra i volumi che hanno ricevuto più consultazioni.
         </p>
+
+        <!-- Canvas utilizzato da Chart.js per disegnare il grafico -->
         <canvas id="chart"></canvas>
+
     </section>
 
 </main>
 
+<!-- ===============================
+     SCRIPT DASHBOARD
+     =============================== -->
+
+<!-- File JS che recupera i dati dal backend e genera il grafico -->
 <script src="../js/dashboard.js"></script>
 
 </body>
