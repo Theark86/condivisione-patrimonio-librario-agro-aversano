@@ -91,6 +91,33 @@ case "received_requests":
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     break;	
 	
+case "update_request":
+    session_start();
+
+    $requestId = $_POST["request_id"] ?? null;
+    $status = $_POST["status"] ?? null;
+
+    if (!$requestId || !$status) {
+        echo json_encode(["success" => false, "error" => "Dati mancanti"]);
+        break;
+    }
+
+    if (!in_array($status, ["accettata", "rifiutata"])) {
+        echo json_encode(["success" => false, "error" => "Stato non valido"]);
+        break;
+    }
+
+    $stmt = $conn->prepare("
+        UPDATE loan_requests 
+        SET stato = ?
+        WHERE id = ?
+    ");
+
+    $stmt->execute([$status, $requestId]);
+
+    echo json_encode(["success" => true]);
+    break;	
+	
     default:
         echo json_encode(["error" => "Azione non valida"]);
 }
