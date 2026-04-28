@@ -9,8 +9,8 @@ Applicazione web per la condivisione e la geolocalizzazione di patrimoni librari
 Il progetto consente agli utenti di:
 
 - 📖 Pubblicare libri della propria collezione privata  
-- 🗺️ Visualizzare i libri su mappa  
-- 🔍 Cercare contenuti nel territorio  
+- 🗺️ Visualizzare i libri su mappa interattiva  
+- 🔍 Cercare contenuti nel territorio (ricerca testuale e geografica)  
 - 🤝 Simulare richieste di prestito  
 - 📊 Monitorare statistiche di utilizzo  
 
@@ -46,18 +46,20 @@ Architettura **client-server**:
 
 ```
 patrimonio-librario-agro-aversano/
-├── frontend/
-├── backend/
-├── database/
-├── uploads/
-├── assets/
-└── docs/
+├── frontend/      # Interfaccia utente
+├── backend/       # Logica applicativa e API
+├── database/      # Script SQL
+├── uploads/       # Immagini caricate
+├── assets/        # Risorse statiche
+└── docs/          # Documentazione
+
 ```
 
 ## 🚀 Funzionalità principali
 
 ### 👤 Utenti
-- Registrazione con selezione comune di residenza e geolocalizzazione automatica / manuale
+- Registrazione con selezione del comune di residenza
+- Geolocalizzazione automatica (HTML5 API)
 - Login / Logout
 - Gestione sessione
 
@@ -80,7 +82,7 @@ patrimonio-librario-agro-aversano/
 - Totale libri
 - Totale utenti
 - Numero richieste
-- Grafico libri più visualizzati
+- Grafico dei libri più visualizzati
 
 ---
 
