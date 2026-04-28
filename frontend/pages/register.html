@@ -2,46 +2,74 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Permette la visualizzazione corretta su dispositivi mobili -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Titolo della pagina -->
     <title>Registrazione</title>
+
+    <!-- Foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<!-- ===============================
+     HEADER PAGINA REGISTRAZIONE
+     =============================== -->
+
 <header>
     <h1>Registrazione</h1>
+
+    <!-- Descrizione -->
     <p>Crea un nuovo account</p>
 
+    <!-- Navigazione principale -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">🏠 Home</a>
         <a href="login.html" class="button-link">Login</a>
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="container">
+
+    <!-- Card contenente il form di registrazione -->
     <section class="card full-width register-card">
 
         <h2>Crea il tuo account</h2>
 
+        <!-- 
+            Form di registrazione utente.
+            I dati vengono inviati al backend tramite POST.
+        -->
         <form action="../../backend/auth/register.php" method="POST" class="register-form">
 
+            <!-- Griglia per organizzare i campi -->
             <div class="form-grid">
 
+                <!-- Nome utente -->
                 <div class="form-group">
                     <label>Nome *</label>
                     <input type="text" name="nome" required>
                 </div>
 
+                <!-- Email utente -->
                 <div class="form-group">
                     <label>Email *</label>
                     <input type="email" name="email" required>
                 </div>
 
+                <!-- Password -->
                 <div class="form-group">
                     <label>Password *</label>
                     <input type="password" name="password" required>
                 </div>
 
+                <!-- Selezione comune (filtro territoriale base) -->
                 <div class="form-group">
                     <label>Comune *</label>
                     <select name="comune" required>
@@ -66,17 +94,28 @@
 
             </div>
 
-            <!-- CAMPI NASCOSTI GEO -->
+            <!-- ===============================
+                 CAMPI NASCOSTI GEOLOCALIZZAZIONE
+                 =============================== -->
+
+            <!-- 
+                Questi campi nascosti verranno popolati automaticamente
+                con le coordinate geografiche dell’utente
+            -->
             <input type="hidden" name="latitudine" id="latitudine">
             <input type="hidden" name="longitudine" id="longitudine">
 
+            <!-- Box informativo per la geolocalizzazione -->
             <div class="geo-box">
                 <p id="geo-status">📍 Rilevamento posizione in corso...</p>
+
+                <!-- Pulsante per forzare il rilevamento manuale -->
                 <button type="button" onclick="getLocation()" class="button-link small">
                     Rileva posizione manualmente
                 </button>
             </div>
 
+            <!-- Pulsante invio form -->
             <button type="submit">Registrati</button>
 
         </form>
@@ -84,29 +123,49 @@
 </main>
 
 <script>
+// ===============================
+// FUNZIONE GEOLOCALIZZAZIONE
+// ===============================
+
 function getLocation() {
+
     const status = document.getElementById("geo-status");
 
+    // Controllo se il browser supporta la geolocalizzazione
     if (!navigator.geolocation) {
         status.innerHTML = "❌ Geolocalizzazione non supportata.";
         return;
     }
 
+    // Richiesta posizione utente
     navigator.geolocation.getCurrentPosition(
+
+        // Caso successo
         function(position) {
+
+            // Salvataggio coordinate nei campi nascosti
             document.getElementById("latitudine").value = position.coords.latitude;
             document.getElementById("longitudine").value = position.coords.longitude;
 
+            // Messaggio di conferma
             status.innerHTML = "✅ Posizione rilevata correttamente";
         },
+
+        // Caso errore
         function(error) {
             status.innerHTML = "⚠️ Impossibile ottenere la posizione";
         }
     );
 }
 
-// AUTO AVVIO
+
+// ===============================
+// AVVIO AUTOMATICO GEOLOCALIZZAZIONE
+// ===============================
+
+// Alla apertura della pagina prova automaticamente a rilevare la posizione
 getLocation();
+
 </script>
 
 </body>
