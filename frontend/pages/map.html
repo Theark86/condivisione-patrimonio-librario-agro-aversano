@@ -2,16 +2,29 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Titolo della pagina -->
     <title>Mappa libri - Agro Aversano</title>
+
+    <!-- Foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Libreria Leaflet per la gestione della mappa -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
 <body>
 
+<!-- ===============================
+     HEADER PAGINA MAPPA
+     =============================== -->
+
 <header class="map-header">
     <h1>Mappa del patrimonio librario</h1>
+
+    <!-- Descrizione funzionale -->
     <p>Esplora i libri condivisi dagli utenti nell’Agro Aversano</p>
 
+    <!-- Navigazione principale -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">Home</a>
         <a href="add-book.html" class="button-link">Aggiungi libro</a>
@@ -19,26 +32,58 @@
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="map-layout">
+
+    <!-- ===============================
+         PANNELLO INFORMATIVO
+         =============================== -->
+
+    <!-- 
+        Sezione laterale che spiega il funzionamento della mappa.
+        Serve per migliorare usabilità e comprensione dell’utente.
+    -->
     <section class="map-info card">
         <h2>Ricerca territoriale</h2>
+
         <p>
             Ogni marker rappresenta un libro disponibile presso un utente del territorio.
             Clicca sul punto per visualizzare titolo, autore e proprietario.
         </p>
 
+        <!-- Legenda dei marker -->
         <div class="legend">
             <span class="legend-dot"></span>
             <span>Libro disponibile</span>
         </div>
     </section>
 
+
+    <!-- ===============================
+         MAPPA INTERATTIVA
+         =============================== -->
+
+    <!-- 
+        Contenitore della mappa Leaflet.
+        Il contenuto viene generato dinamicamente tramite map.js.
+    -->
     <section class="map-card card">
         <div id="map"></div>
     </section>
+
 </main>
 
+<!-- ===============================
+     SCRIPT MAPPA
+     =============================== -->
+
+<!-- Libreria JavaScript Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Script personalizzato che carica i libri e crea i marker -->
 <script src="../js/map.js"></script>
 
 </body>
