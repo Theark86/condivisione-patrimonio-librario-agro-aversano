@@ -7,7 +7,13 @@
 </head>
 <body>
 
-<div id="book-detail"></div>
+<header>
+    <h1>Dettaglio libro</h1>
+</header>
+
+<main class="container">
+    <section class="card full-width" id="book-detail"></section>
+</main>
 
 <script>
 const urlParams = new URLSearchParams(window.location.search);
@@ -16,16 +22,22 @@ const id = urlParams.get("id");
 fetch(`../../backend/routes/api.php?action=book&id=${id}`)
     .then(res => res.json())
     .then(book => {
-
         const div = document.getElementById("book-detail");
 
+        const image = book.cover_image
+            ? `../../${book.cover_image}`
+            : "../../assets/images/default-book.png";
+
         div.innerHTML = `
+            <img src="${image}" alt="Copertina di ${book.titolo}" class="book-cover-detail">
             <h2>${book.titolo}</h2>
             <p><strong>Autore:</strong> ${book.autore}</p>
-            <p><strong>Anno:</strong> ${book.anno}</p>
-            <p><strong>Categoria:</strong> ${book.categoria}</p>
+            <p><strong>Anno:</strong> ${book.anno || "Non indicato"}</p>
+            <p><strong>Categoria:</strong> ${book.categoria || "Non specificata"}</p>
             <p><strong>Proprietario:</strong> ${book.proprietario}</p>
+            <p><strong>Comune:</strong> ${book.comune}</p>
             <p>${book.descrizione || ""}</p>
+            <button>Richiedi prestito</button>
         `;
     });
 </script>

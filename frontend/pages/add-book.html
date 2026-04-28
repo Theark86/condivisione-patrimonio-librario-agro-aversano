@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Aggiungi libro</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Aggiungi un libro</h1>
+    <p>Inserisci un volume della tua collezione privata</p>
+</header>
+
+<main class="container">
+    <section class="card full-width">
+        <form 
+            action="../../backend/books/add_book.php" 
+            method="POST" 
+            enctype="multipart/form-data"
+        >
+            <label>Titolo</label>
+            <input type="text" name="titolo" required>
+
+            <label>Autore</label>
+            <input type="text" name="autore" required>
+
+            <label>Anno</label>
+            <input type="number" name="anno">
+
+            <label>Categoria</label>
+            <input type="text" name="categoria">
+
+            <label>Descrizione</label>
+            <textarea name="descrizione"></textarea>
+
+            <label>Copertina</label>
+            <input type="file" name="cover" accept="image/*">
+
+            <button type="submit">Salva libro</button>
+        </form>
+    </section>
+</main>
+
+</body>
+</html>
