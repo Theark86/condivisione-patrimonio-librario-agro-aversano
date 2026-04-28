@@ -198,7 +198,7 @@ Arcangelo Palmiero
 ![Home](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/home.png)
 
 ### 🔐 Login
-![Login](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/homelogin.png)
+![Login](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/login.png)
 
 ### 📝 Registrazione
 ![Registrazione](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/registrati.png)
@@ -206,8 +206,14 @@ Arcangelo Palmiero
 ### ➕ Aggiungi libro
 ![Aggiungi libro](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/aggiungilibro.png)
 
+### 📖 Dettaglio libro
+![Dettaglio libro](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/dettagliolibro.png)
+
 ### 🗺️ Mappa
 ![Mappa](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/mappa.png)
+
+### 📍📖 Mappa con dettaglio libro
+![Mappa con dettaglio libro](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/mappacondettagliolibro.png)
 
 ### 📊 Dashboard
 ![Dashboard](https://raw.githubusercontent.com/Theark86/patrimonio-librario-agro-aversano-/main/assets/images/screenshots/dashboard.png)
