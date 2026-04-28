@@ -2,15 +2,26 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Titolo della pagina -->
     <title>Dettaglio libro</title>
+
+    <!-- Foglio di stile principale -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
+<!-- ===============================
+     HEADER PAGINA DETTAGLIO
+     =============================== -->
+
 <header class="detail-header">
     <h1>Dettaglio libro</h1>
+
+    <!-- Descrizione della pagina -->
     <p>Informazioni complete sul volume selezionato</p>
 
+    <!-- Navigazione principale -->
     <nav class="nav-buttons">
         <a href="index.html" class="button-link">Home</a>
         <a href="map.html" class="button-link">Mappa</a>
@@ -18,41 +29,82 @@
     </nav>
 </header>
 
+<!-- ===============================
+     CONTENUTO PRINCIPALE
+     =============================== -->
+
 <main class="detail-layout">
+
+    <!-- 
+        Contenitore dinamico:
+        verrà riempito via JavaScript con i dati del libro
+    -->
     <section id="book-detail" class="card detail-card">
         <p>Caricamento dettagli...</p>
     </section>
+
 </main>
 
 <script>
+// ===============================
+// Recupero ID libro dalla URL
+// ===============================
+
+// Legge i parametri GET dalla URL (es. ?id=5)
 const urlParams = new URLSearchParams(window.location.search);
+
+// Estrae l'id del libro selezionato
 const id = urlParams.get("id");
 
+
+// ===============================
+// Chiamata API per dettaglio libro
+// ===============================
+
+// Richiesta al backend per ottenere i dati del libro
 fetch(`../../backend/routes/api.php?action=book&id=${id}`)
     .then(res => res.json())
     .then(book => {
+
         const div = document.getElementById("book-detail");
 
+        // Controllo se il libro esiste
         if (!book || book.error) {
             div.innerHTML = "<p>Libro non trovato.</p>";
             return;
         }
 
+        // Gestione immagine copertina (fallback se assente)
         const image = book.cover_image
             ? `../../${book.cover_image}`
             : "../../assets/images/default-book.png";
 
+        // ===============================
+        // Rendering HTML dinamico
+        // ===============================
+
         div.innerHTML = `
             <div class="detail-grid">
+
+                <!-- Copertina libro -->
                 <div class="detail-cover-box">
-                    <img src="${image}" alt="Copertina di ${book.titolo}" class="book-cover-detail">
+                    <img src="${image}" 
+                         alt="Copertina di ${book.titolo}" 
+                         class="book-cover-detail">
                 </div>
 
+                <!-- Informazioni libro -->
                 <div class="detail-info">
-                    <span class="detail-category">${book.categoria || "Categoria non specificata"}</span>
 
+                    <!-- Categoria -->
+                    <span class="detail-category">
+                        ${book.categoria || "Categoria non specificata"}
+                    </span>
+
+                    <!-- Titolo -->
                     <h2>${book.titolo}</h2>
 
+                    <!-- Metadati principali -->
                     <div class="detail-meta">
                         <p><strong>Autore:</strong> ${book.autore}</p>
                         <p><strong>ISBN:</strong> ${book.isbn || "Non indicato"}</p>
@@ -61,34 +113,49 @@ fetch(`../../backend/routes/api.php?action=book&id=${id}`)
                         <p><strong>Comune:</strong> ${book.comune || "Non indicato"}</p>
                     </div>
 
+                    <!-- Descrizione libro -->
                     <div class="detail-description">
                         <h3>Descrizione</h3>
                         <p>${book.descrizione || "Nessuna descrizione disponibile."}</p>
                     </div>
 
+                    <!-- Pulsante richiesta prestito -->
                     <button class="request-button" onclick="requestLoan(${book.id})">
                         Richiedi prestito
                     </button>
 
+                    <!-- Messaggio feedback richiesta -->
                     <p id="loan-message" class="loan-message"></p>
+
                 </div>
             </div>
         `;
     })
     .catch(error => {
+
+        // Gestione errore caricamento dati
         console.error(error);
+
         document.getElementById("book-detail").innerHTML =
             "<p>Errore nel caricamento del dettaglio libro.</p>";
     });
 
+
+// ===============================
+// Funzione richiesta prestito
+// ===============================
+
 function requestLoan(bookId) {
+
     const message = document.getElementById("loan-message");
 
     if (!message) return;
 
+    // Messaggio temporaneo durante invio richiesta
     message.innerHTML = "Invio richiesta in corso...";
     message.className = "loan-message";
 
+    // Chiamata POST al backend
     fetch("../../backend/routes/api.php?action=request_loan", {
         method: "POST",
         headers: {
@@ -98,16 +165,22 @@ function requestLoan(bookId) {
     })
     .then(res => res.json())
     .then(data => {
+
+        // Se richiesta andata a buon fine
         if (data.success) {
             message.innerHTML = "Richiesta di prestito inviata correttamente.";
             message.className = "loan-message success";
         } else {
+            // Errore restituito dal backend
             message.innerHTML = data.error || "Errore durante l'invio della richiesta.";
             message.className = "loan-message error";
         }
     })
     .catch(error => {
+
+        // Errore di connessione
         console.error(error);
+
         message.innerHTML = "Errore di connessione.";
         message.className = "loan-message error";
     });
