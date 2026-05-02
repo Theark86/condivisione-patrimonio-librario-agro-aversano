@@ -6,9 +6,9 @@ USE patrimonio_librario;
 INSERT INTO users (id, nome, email, password, comune, lat, lng, ruolo, privacy_posizione, created_at) VALUES
 (1, 'Marco Rossi', 'marco@example.com', '$2y$10$demo_hash_password', 'Cesa', 40.96540000, 14.23100000, 'utente', 'approssimata', '2026-04-28 12:23:16'),
 (2, 'Giulia Esposito', 'giulia@example.com', '$2y$10$demo_hash_password', 'Teverola', 40.99560000, 14.20710000, 'utente', 'approssimata', '2026-04-28 12:23:16'),
-(3, 'Nicola Palmiero', 'palmieronicola@gmail.com', '$2y$10$demo_hash_password', 'Lusciano', 40.97090000, 14.19060000, 'utente', 'approssimata', '2026-04-28 12:23:16'),
+(3, 'Nicola Palmiero', 'palmieronicola@example.com', '$2y$10$demo_hash_password', 'Lusciano', 40.97090000, 14.19060000, 'utente', 'approssimata', '2026-04-28 12:23:16'),
 (4, 'Admin Sistema', 'admin@example.com', '$2y$10$demo_hash_password', 'Aversa', 40.97320000, 14.20770000, 'admin', 'nascosta', '2026-04-28 12:23:16'),
-(5, 'Arcangelo Palmiero', 'palmieroarcangelo@gmail.com', '$2y$10$Jb1JwaBd/A2UZOr5/ldRr.DmwrqtRPdHAEgnr0UilCAt8zo8YAj8C', 'Lusciano', 40.97320000, 14.20770000, 'utente', 'precisa', '2026-04-28 14:43:48'),
+(5, 'Arcangelo Palmiero', 'palmieroarcangelo@example.com', '$2y$10$Jb1JwaBd/A2UZOr5/ldRr.DmwrqtRPdHAEgnr0UilCAt8zo8YAj8C', 'Lusciano', 40.97320000, 14.20770000, 'utente', 'precisa', '2026-04-28 14:43:48'),
 (9, 'Raffaele Mottola', 'motrraff@esempio.it', '$2y$10$kaZU.hUvuVCLh.iwGwRqo.pTqDmD8UiwrXhQNkGTLeysyKdYLMDO2', 'Carinaro', 40.98160000, 14.21630000, 'utente', 'approssimata', '2026-04-28 16:21:15');
 
 -- ======================
